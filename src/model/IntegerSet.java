@@ -143,13 +143,9 @@ public class IntegerSet{
 	public IntegerSet intersection(IntegerSet set, String newName){
 
 		IntegerSet objSet = new IntegerSet(newName);
-		boolean verific = true;
-		int option = 0;
 		Integer position = 0;
 		int variable = 0;
 		int cont = 0;
-		int x = 0;
-
 
 		for (int i = 0;i<elements.size(); i++) {
 
@@ -167,10 +163,10 @@ public class IntegerSet{
 
 				if(position != set.elements.get(k)){
 
-					variable += 1;
+					variable ++;
 				}
 				else{
-					variable -= 1;
+					variable --;
 				}
 			}
 
@@ -200,7 +196,8 @@ public class IntegerSet{
 			verific = objSet.findElement(set.elements.get(k));
 
 			if(verific){
-				objSet.elements.add(set.elements.get(k));
+
+				objSet.elements.remove(set.elements.get(k));
 				objSet.setCardinality(objSet.elements.size());
 			}
 		}
