@@ -42,8 +42,6 @@ public class IntegerSet{
 
 			if(elements.get(i) == element){
 				verific = true;
-				System.out.println("Hecho: "+element);
-				System.out.println(verific);
 			}
 		}
 		return verific;
@@ -53,16 +51,12 @@ public class IntegerSet{
 
 		boolean verific = false;
 		int position = 0;
-		System.out.println("Position:"+position);
 
 		for(int i = 0; i<elements.size() && !verific; i++){
 
-			System.out.println(elements.get(i));
-			System.out.println(element);
 			if(elements.get(i) == element){
 				verific = true;
 				position = i;
-				System.out.println("Position:"+position);
 			}
 		}
 		return position;
@@ -149,7 +143,7 @@ public class IntegerSet{
 	public IntegerSet intersection(IntegerSet set, String newName){
 
 		IntegerSet objSet = new IntegerSet(newName);
-		boolean verific = false;
+		boolean verific = true;
 		int option = 0;
 		Integer position = 0;
 		int variable = 0;
@@ -169,16 +163,11 @@ public class IntegerSet{
 
 			cont = set.getCardinality();
 
-			for(int k = 0;k<cont && !verific; k++){	
-
-				x += 1;
+			for(int k = 0;k<cont; k++){			
 
 				if(position != set.elements.get(k)){
 
 					variable += 1;
-				}
-				else if(cont == x-1){
-					verific = true;
 				}
 				else{
 					variable -= 1;
@@ -196,10 +185,25 @@ public class IntegerSet{
 		return objSet;
 	}
 
-	public IntegerSet symmetricDifference(IntegerSet set, String newname){
+	public IntegerSet symmetricDifference(IntegerSet set, String newName){
 
-		IntegerSet objSet = null;
+		IntegerSet objSet = new IntegerSet(newName);
+		boolean verific;
 
+		for (int i = 0;i<elements.size(); i++) {
+
+			objSet.elements.add(elements.get(i));
+			objSet.setCardinality(elements.size());
+		}
+		for(int k = 0;k<set.elements.size(); k++){
+
+			verific = objSet.findElement(set.elements.get(k));
+
+			if(verific){
+				objSet.elements.add(set.elements.get(k));
+				objSet.setCardinality(objSet.elements.size());
+			}
+		}
 		return objSet;
 	}
 
